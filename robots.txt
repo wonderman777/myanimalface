@@ -1,0 +1,3 @@
+User-agent: *
+Allow:/
+Sitemap: https://wonderface.netlify.app/sitemap.xml
