@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>요즘 동물상 테스트</title>
+    <title>요즘 동물상 테스트(구현중.....)</title>
     <meta name="title" content="동물상 분석 테스트">
     <meta name="subject" content="인공 지능 동물상 분석 테스트">
     <meta name="description" content="인공지능이 말해주는 동물상" />
@@ -39,7 +39,7 @@
 
 <body class="container">
     <nav class="p-3 container navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="https://wonderface.netlify.app/">요즘 동물상 테스트</a>
+        <a class="navbar-brand" href="https://animalface2.netlify.app/">요즘 동물상 테스트</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,12 +47,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">요즘 동물상 테스트
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="https://hansomeface.netlify.app/">얼굴 등급 테스트
+                    <a class="nav-link" href="https://goodface.netlify.app/">요즘 얼굴등급 테스트
                     </a>
                 </li>
                 <li class="nav-item active">
@@ -73,7 +68,7 @@
     </section>
     <div class="d-md-flex flex-row bd-highlight mb-3 justify-content-center align-items-center">
         <div class="mt-2 container d-flex justify-content-center ad-banner">
-            <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-9ivIOP7Gs1hpiV4p" data-ad-width="320"
+            <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-kmCkViupqMKy3rI3" data-ad-width="320"
                 data-ad-height="100"></ins>
         </div>
         <div class="mt-2 container d-flex justify-content-center ">
@@ -90,7 +85,7 @@
         </div>
 
         <div class="mt-2 container d-flex justify-content-center ad-banner">
-            <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-J0pU1pI6Yo5PVKMX" data-ad-width="320"
+            <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-FYq1h3FVyeBojKio" data-ad-width="320"
                 data-ad-height="100"></ins>
         </div>
     </div>
@@ -133,24 +128,34 @@
     </div>
     <!-- kakao ad start -->
     <div class="mt-2 container d-flex justify-content-center ad-banner">
-        <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-iTqnJ59weXo0m3Sf" data-ad-width="320"
+        <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-Kz7Zz07XMs27GqQd" data-ad-width="320"
             data-ad-height="100"></ins>
     </div>
 
 
     <div class="mt-2 container d-flex justify-content-center ad-banner">
-        <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-ShZJBL7iF9WDfhTX" data-ad-width="300"
+        <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-gjEJ8h3PNO3mOZ70" data-ad-width="300"
             data-ad-height="250"></ins>
     </div>
 
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
     <section id="yotube-bottom-link" class="mt-2 d-flex flex-column justify-content-center align-items-center"
-        onclick="gtag('event', '유관순 애국가', {'event_category': '유관순 애국가 클릭','event_label': '유튜브 홍보'});">
+    onclick="gtag('event', '유튜브 클릭', {'event_category': '유튜브 클릭','event_label': '유튜브 홍보'});">
         <h5 class="mt-1">요즘 핫한 youtube</h4>
-            <iframe width="320" height="180" src="https://www.youtube.com/embed/b2ndrOpPhSs" frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+            <div>
+                <iframe width="320" height="180" src="https://www.youtube.com/embed/b2ndrOpPhSs" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                    onclick="gtag('event', '유관순 애국가', {'event_category': '유튜브 클릭','event_label': '유튜브 홍보'});">
+                </iframe>
+            </div>
+
+            <div>
+                <iframe width="320" height="180" src="https://www.youtube.com/embed/053mIWsL1Ts" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                    onclick="gtag('event', '주기도문', {'event_category': '유튜브 클릭','event_label': '유튜브 홍보'});">
+                </iframe>
+            </div>
     </section>
     <!-- kakao ad end -->
 
@@ -173,7 +178,7 @@
                     </button>
                 </div>
                 <div class="modal-body d-flex justify-content-center">
-                    <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-ShZJBL7iF9WDfhTX"
+                    <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-gjEJ8h3PNO3mOZ70"
                         data-ad-width="300" data-ad-height="250"></ins>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
