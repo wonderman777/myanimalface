@@ -550,6 +550,23 @@
                 }
                 var labelTitle = prediction[i].className;
                 let boxName = "one";
+                switch (i) {
+                    case 0:
+                        boxName = "one"
+                        break;
+                    case 1:
+                        boxName = "two"
+                        break;
+                    case 2:
+                        boxName = "three"
+                        break;
+                    case 3:
+                        boxName = "four"
+                        break;
+                    case 4:
+                        boxName = "five"
+                        break;
+                }
                 var label = "<div class='result-label d-flex align-items-center'>" + labelTitle + "</div>"
                 var bar = "<div class='bar-container position-relative container'><div class='" + boxName + "-box'> \
                         </div><div class='d-flex justify-content-center align-items-center " + boxName + "-bar' style='width: " + barWidth + "'> \
