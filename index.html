@@ -279,7 +279,6 @@
             var image = document.getElementById("face-image");
             const prediction = await model.predict(image, false);
             prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
-            console.log(prediction);
             var resultTitle, resultExplain, resultCeleb;
             let degreeNum;
             let reaulTitleSuffix = " 의 얼굴을 가지셨군요.";
