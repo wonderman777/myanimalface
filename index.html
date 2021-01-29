@@ -58,8 +58,8 @@
         </div>
     </nav>
     <section class="section">
-        <h1 class="title">요즘 동물상(구현중.....)</h1>
-        <h2 class="subtitle">인공지능이 분석한(27종) 동물상</h2>
+        <h1 class="title">요즘 동물상 테스트</h1>
+        <h2 class="subtitle">인공지능이 분석한 동물상</h2>
         <h2 class="sr-only">나는 어떤 동물상일까?</h2>
         <p class="sr-only">나와 비슷한 동물상을 가진 연예인은?</p>
     </section>
@@ -255,8 +255,8 @@
     </script>
     <script type="text/javascript">
         let URL;
-        const urlMale = "https://teachablemachine.withgoogle.com/models/QW2s7S2Y-/";
-        const urlFemale = "https://teachablemachine.withgoogle.com/models/EAS3f3i3L/";
+        const urlMale = "https://teachablemachine.withgoogle.com/models/Zpi7kj7hU/";
+        const urlFemale = "https://teachablemachine.withgoogle.com/models/OI83q7jrh/";
         let model, webcam, labelContainer, maxPredictions;
         async function init() {
             if (document.getElementById("gender").checked) {
@@ -276,127 +276,152 @@
             }
         }
         async function predict() {
-            var image = document.getElementById("face-image")
+            var image = document.getElementById("face-image");
             const prediction = await model.predict(image, false);
             prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
             console.log(prediction);
             var resultTitle, resultExplain, resultCeleb;
             let degreeNum;
+            let reaulTitleSuffix = " 의 얼굴을 가지셨군요.";
             if (document.getElementById("gender").checked) {
                 gtag('event', '남자 실행', {
                     'event_category': '실행 결과',
                     'event_label': '남자'
                 });
                 switch (prediction[0].className) {
-                    case "강동원":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "성격이 차분하고 강인하고 정적인 성격입니다. 예능계통으로 직업운이 딱맞고 성격이 정적인 성격이라 여자에게는 좀 재미가 없을수 있는 얼굴입니다. \
-                                        전체적으로 사람을 끌어들이는 기가 아주 강하여 평생 재물운이 강하고 성공운이 열린 얼굴이라 할수 있습니다."
-                        resultCeleb = ""
+                    case "쥐상":
+                        degreeNum = "one";
+                        resultTitle = "꾀가 많은 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "쥐상은 하관이 짧고 체구가 작은 것이 특징이며, 부지런하고 꾀가 많으며 기회 포착을 잘한다. 그리고 식복이 있어 아무리 못살아도 밥은 먹고 살아가며, \
+                                        위험을 미리 감지하는 본능이 왔다갔다하며 재빨리 움직이는 눈에 있다. 또한 스스로 체구가 작아 미약하며 위엄 없어 보인다는 것을 일찌감치 파악해 어릴 때부터 주로 머리를 쓰며 동작 빠르게 살아가는 유형이다."
+                        resultCeleb = "민경훈 윤시윤 이명박 이특 하하"
+                        break;  
+                    case "다람쥐상":
+                        degreeNum = "two";
+                        resultTitle = "부지런한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "다람쥐상은 하관이 짧고 체구가 작은 것이 특징이며, 부지런하고 꾀가 많으며 기회 포착을 잘한다. 그리고 식복이 있어 아무리 못살아도 밥은 먹고 살아가며, \
+                                        위험을 미리 감지하는 본능이 왔다갔다하며 재빨리 움직이는 눈에 있다. 또한 스스로 체구가 작아 미약하며 위엄 없어 보인다는 것을 일찌감치 파악해 어릴 때부터 주로 머리를 쓰며 동작 빠르게 살아가는 유형이다."
+                        resultCeleb = "이민혁"
+                        break;    
+                    case "송아지상":
+                        degreeNum = "three";
+                        resultTitle = "지구력이 강한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "송아지상은 코가 크고 특히 코 평수가 넓직한 것이 특징이며, 체력이 뛰어나고 지구력과 참을성이 이를 데 없다. 입도 그에 못지않게 넙적하면서 다물든 벌리든 아구가 큰 것이 드러난다. \
+                                    또한 주위를 두루 살피면서도 입술은 얄팍하지 않아 언행이 가볍지 않은 유형이다."
+                        resultCeleb = "문세윤 문재인"
+                        break;    
+                    case "호랑이상":
+                        degreeNum = "four";
+                        resultTitle = "진취적인 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "호랑이상은 눈매가 날카롭고 눈꼬리가 올라가 있으며 눈썹 숱이 많아 이목구비가 다른 동물상에 비해 훨씬 뚜렷한 것이 특징이며, 또한 진취적이고 호전적인 기질이 강해, 남성의 경우 대통령이나 정·재계 인사들에게서 많이 나타나는 관상으로 알려져 있다. \
+                                하지만 한편으로는 드세 보이거나 팔자가 세 보인다는 편견이 있는 인상이다.
+                        resultCeleb = "김윤석 노태우 백윤식 윤석열 이덕화 임재범 천호진 최민식"
                         break;
-                    case "김수현":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "눈썹은 굵고 진하여 재물복이 좋습니다. 끈기가 강한 눈썹이라 할 수 있습니다. 인중은 또렷하여 재주와 재능이 좋습니다. 예능계열쪽으로 좋은 인중입니다. 입은 아래위로 도톰한 입이라 연애운이 좋고 다무진 입이라 성격이 차분하고 입이 무겁습니다. \
-                                        전체적으로 차분하고 조용하면서 이기적인면이 있고 욕심도 많고 끈기와 의지력이 강한 동물상이라 할 수 있습니다."
-                        resultCeleb = ""
-                        break;
-                    case "박해일":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 훤칠하고 깨끗하여 처복이 좋고 두뇌가 빠른 머리입니다. 자아도취적인 경향도 강한 상입니다. 코는 아주 수려한 코라서 처복도 좋고 여복도 좋고 재물운도 좋은 코입니다. 화려하고 깨끗하고 수려한것을 추구하는 상입니다. 턱은 강인하면서 곡선적인 턱이라서 남성적인면과 여성적인면이 잘 어우러져 있는 턱에 속합니다.\
-                                        전체적인 동물상은 흠잡을곳 없는 아주 좋은 동물상입니다. 다혈직적인 경향도 있는 편입니다."
-                        resultCeleb = ""
-                        break;
-                    case "소지섭":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "인중이 가늘고 길어서 예술이나 예능이 직업에 맞습니다.눈이 어안(붕어눈)또는 고래눈 또는 봉황눈이라서 재물운이 아주 좋습니다. 귀는 정면에서 잘 안보이는 귀이므로 고집이 쎄고 자기 마음을 남에게 들어내지 않는 성격입니다. 침묵하고 정적인 성격이라고 할 수 있고 과묵한면도 조금 있고 턱이 강하여 성질이 강하고 노년운이 평탄한 동물상입니다."
-                        resultCeleb = ""
-                        break;
-                    case "송중기":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 짱구이마이군요. 머리가 좋고 생각하는 범위가 아주 넓고 지혜롭습니다. 하지만 짱구이마는 노력을 하면 공부를 잘할수 있는데 노력을 잘 안하는게 흠입니다. 인중은 적당하고 입은 처진입에 속하여 의지가 강하고 신념이 강한 사람에 속합니다. 턱은 강인하여 직업운이 강하고 재복이 좋고 말년운이 좋은 턱입니다.\
-                                        전체적으론 원숭이상은 아니지만 원숭이상에 가까운 상이라 재능이 좋아서 그 재능으로 평생 화려한 인생을 살 수 있습니다."
-                        resultCeleb = ""
-                        break;
-                    case "이준":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "미간은 적당한편이고 눈썹은 진하고 재복이 좋고 의지가 강한 눈썹이고 눈은 독수리형이라서 관찰력이 좋고 예민하고 사리판단력이 빠른 눈입니다. 자상할때는 자상하지만 날카로운 성격도 있다고 보시면 됩니다. 코는 복코이면서 적당한편에 속합니다. 결혼운도 무난한 코에 속합니다.\
-                        중도 적당한편에 속하고 입은 아래위로 적당하여 연애운이 좋고 결혼운도 편탄하고 턱은 강인하면서 뾰족하여 말년운은 좋지만 자기주장이 강하고 개인주의적인 성향도 강합니다. 전체적으로 얼굴이 길어서 직업운과 재복이 좋은 상입니다. "
-                        resultCeleb = ""
-                        break;
-                    case "원빈":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "코가 아주 재복이 좋습니다. 하지만 낭비벽이 약간 있으니 절제를 하여야 합니다. 얼굴이 미남형이라 연예인이 자기 직업과 적성에 딱맞고 이마가 사각형이라 사회성이 좋습니다. 눈이 잘생긴 눈이 아니고 아름다운 눈입니다 남자가 아름다운 눈을 하면 정에 약합니다. \
-                                        눈이 들어간 형태라 고집이 있고 판단력이 빠르고 머리 회전이 빠릅니다. 처복도 좋지만 약간 외로운 성격입니다. 결혼운도 좋아서 결혼은 자기가 마음만 먹으면 언제든지 할수 있습니다."
-
-                        resultCeleb = ""
-                        break;
-                    case "유승호":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마가 깨끗하고 시원하여 성격도 시원스럽고 사회성도 좋고 처복도 좋은 이마입니다. 눈썹이 진하고 길어서 재복이 좋고 미간도 적당하고 눈이 아주 긴편에 속합니다 길상이라 재복도 좋고 마음씨가 선하고 감정이 풍부합니다. 입술도 도톰하여 연애운이 좋고 여자복이 많고 \
-                                        처복도 좋고 결혼운도 좋습니다. 입이 큰편이라서 결단력이 좋고 시원스러운 성격이고 마음씨가 넓고 자상하다고 보시면 됩니다. 전체적으로 인품이 좋고 자상하고 인정이 많고 흠잡을대없는 동물상입니다 너무 좋은 동물상이군요."
-
-                        resultCeleb = ""
-                        break;
-                    case "유아인":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 좁은편이군요. 처복이 안좋거나 이혼수가 강합니다. 저런 이마는 성격은 착하고 인정이 많습니다. 하지만 뺀질이 기질도 있고 남의 말을 잘 안 듣는 성향이 강합니다. 눈썹은 진하여 재복은 좋은편이고 미간은 적당하고 눈은 다정하면서 차분하고 사색적이고 반항아기질이 있고 \
-                                        개성이 강하고 주관이 뚜렷한 눈입니다. 남과 다른 인생을 살려하고 평범한 인생을 싫어하는 눈입니다. 코는 적당하면서 콧구멍이 크군요. 활동적이고 생각보다 행동이 앞서는 코입니다. 전체적으로는 자기안에 또 다른 자기를 찾아 헤메는 상입니다."
-                        resultCeleb = ""
-                        break;
-                    case "이광수":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 적당하면서 관운이 강하고 개인주의적인 성격이 강할수가 있고 눈썹은 길고 진하여 재복이 좋고 눈썹뼈가 강하여 고집이 강하고 정력이 강하고 눈은 소탈하고 가정에 충실한 눈입니다. 미간은 적당하고 코는 재복이 좋고 처복이 좋고 정력이 강한 코입니다. \
-                                    인중은 또렷하여 재능이 좋고 얼굴길이에 비해 인중은 짧은 편이라 성격이 급할수 있고 대인관계는 좋고 입은 두껍고 큰편에 속하여 결단성이 좋고 심사숙고형이고 성격도 좋은편에 속합니다."
-                        resultCeleb = ""
-                        break;
-                    case "이승기":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "말상이라 직업운이 아주 강합니다. 이마가 사각형이라 사회성이 강하고 가정보다 일을 더 중요시 하는 동물상이라 하겠습니다. 코가 재복코이면서 정력이 강하고 활력이 있어서 사업을 하면 아주 좋은 동물상입니다. 그리고 사각형 이마는 지적인 면이 강하여 두뇌만 좋으면 \
-                                        학자나 교수로 나가도 좋은 동물상이라 할수 있습니다. 인생에 굴곡이 없을수 있고 웃을때 입이 큰편이라 시원한 성격이고 낙천적인 성격이라 할 수 있습니다. "
-                        resultCeleb = ""
-                        break;
-                    case "장동건":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "눈과 눈썹 코가 재복이 아주 좋은 이목구비이고 입술도 볼륨감이 있어 성격도 온화하고 착합니다. 얼굴 전체적으로는 자상하고 차분한 성격이라 보시면 됩니다. 그리고 눈이 시원시원하여 마음씨도 시원시원하고 이마도 깨끗하고 좋습니다."
-                        resultCeleb = ""
-                        break;
-                    case "조인성":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마가 훤칠하여 사회성이 좋고 붙힘성이 좋고 사교성이 좋은 이마입니다. 눈이 애교가 많고 자상한눈입니다. 여자에게 아주 잘하는 눈입니다. 코가 강직하고 고집이 좀 강한 코이고 남자 입술이 앵두 입술에 가까워서 여자들이 많이 따르는 입술입니다. \
-                                        턱은 강인하여 재복이 좋고 말년운이 좋은 턱입니다. 눈썹은 재복이 아주 좋은 눈썹입니다. 전체적으로 남자다운 얼굴이면서 성격이 복합적인 성격이고 전체적으로 아주 좋은 동물상입니다."
-                        resultCeleb = ""
-                        break;
-                    case "하정우":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 사각형 이마라 사무적이고 정적인 성격이고 눈썹은 평범하고 미간도 적당하고 눈은 용눈이군요. 아주 좋은 눈입니다 만인의 관심을 받는 눈입니다. 이런 눈은 인생을 살아가면서 자기 적성만 찾으면 그 분야에서 크게 출세할수 있는 눈입니다. \
-                                        결혼은 움직이는 운명이라 자기가 열심히 노력을 하면 결혼을 할 수가 있습니다. 하지만 노력을 안하면 자기 운명대로 결혼 안하고 독신으로 살아간다고 보시면 됩니다. 코는 강인하면서 정직한 성격이고 고지식한 면도 있습니다."
-                        resultCeleb = ""
-                        break;
-                    case "현빈":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "는 아주 평범한 코 입니다. 미적으로는 잘생긴 코일지는 모르겠지만 동물상학적으로는 그저 그렇고 평범한 코입니다. 눈은 자상하고 온화하고 차분한 눈입니다. 눈썹이 진하여 재복이 좋은 눈썹이고 고집이 가주 강할것입니다. 하지만 그 고집을 자기 스스로 잘 다스리는 사람이라고 할수 있습니다. \
-                                        그리고 전체적인 동물상은 미남형이고 인중이 길어 예능이나 예술쪽으로 가면 좋습니다. 처복은 아내와 성격차이가 일어날 가능성이 많습니다."
-                        resultCeleb = ""
-                        break;
-                    default:
-                        resultTitle = "알수없음"
-                        resultExplain = ""
-                        resultCeleb = ""
+                    case "토끼상":
+                        degreeNum = "five";
+                        resultTitle = "사랑스러운 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "토끼상은 대체로 인중이 뚜렷하고 커다란 눈망울과 귀엽고 사랑스러운 분위기가 풍겨 모성애를 자극하는 얼굴상이다. 첫인상이 귀여워 이성의 유혹을 많이 받을 수 있으니 조심해야 한다."
+                        resultCeleb = "도티 정국 수호"
+                        break;    
+                    case "용상":
+                        degreeNum = "six";
+                        resultTitle = "위엄있는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "용상은 코가 높이 솟아 있고 귀는 눈썹보다 위에 위치하고 있으며 눈은 둥글면서 눈동자는 크고 눈썹은 굵고 짙은 것이 특징이다. 또한 이마·코·눈썹·광대뼈와 턱 부분이 발달되어 있다. \
+                                    전신에서 사람들을 압도하는 에너지가 뿜어져 나오고, 골격은 바위처럼 장대하면서 단정하다. 수염이 길고 아름다우며 두골의 좌우 상부가 튀어나와 있다. 인상의 전체적인 분위기는 위엄이 있으며, \
+                                    성격은 상황에 따라 태도가 자주 변하기 때문에 그 행동을 예측하기가 매우 어려운 사람이 많은 유형이다."
+                        resultCeleb = "김수환 정주영"
+                        break;    
+                    case "뱀상":
+                        degreeNum = "seven";
+                        resultTitle = "간교한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "뱀상은 얼굴이 둥글며 목과 혀가 유난히 길고 입술이 얇은 것이 특징이며, 혀를 자주 움직이는 버릇이 있어 마치 뱀을 방불케 하며 눈에서는 살기를 느낄 수 있으며 간교한 느낌을 주는 유형이다."
+                        resultCeleb = "박정희"
+                        break;     
+                    case "말상":
+                        degreeNum = "one";
+                        resultTitle = "건강한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "말상은 대체적으로 얼굴이 길고 크며 이목구비도 큼직하다. 건강하고 강인한 육체도 가지고 있다."
+                        resultCeleb = "강타 시원 유열 이수만 이문세 제이홉"
+                        break;  
+                    case "원숭이상":
+                        degreeNum = "two";
+                        resultTitle = "머리가 명석한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "원숭이상은 입이 크고 귀가 양 옆으로 펼쳐져 있는게 특징이며, 머리가 명석하고 운동신경과 재주가 뛰어나지만 성품이 가볍고 경박하기도 하여 자기 꾀만 믿고 덤비다 크게 낭패하는 경우가 많다. 또한 성질이 급하고 호색한인 경우가 많은 유형이다."
+                        resultCeleb = "박원순 박진영 손민수 이재명 최진영 MC몽"
+                        break;    
+                    case "강아지상":
+                        degreeNum = "three";
+                        resultTitle = "결혼하고 싶은 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "강아지상은 얼굴형과 이목구비가 동글동글하며 눈꼬리가 처져서 선해 보인다. 또한 통통한 볼살, 훈훈한 동안상, 깨끗하고 하얀 피부에 동그랗고 큰 눈, 수평형으로 자연스럽고 두께가 있는 눈썹, 살짝 쳐진 눈꼬리, 동그란 얼굴형의 얼굴로 결혼하고 싶은 훈남상이다."
+                        resultCeleb = "고수 송중기 김국진 전현무 백현"
+                        break;  
+                    case "돼지상":
+                        degreeNum = "four";
+                        resultTitle = "식욕이 왕성한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "돼지상은 보통 볼살이 많고 목이 짧고 굵으며 입술은 두툼한 것이 특징이며, 재물운이 좋고 식욕이 왕성하여 쉽게 비만해지는 경향이 있으며, 웃음소리가 호탕하고 통이 커서 인복이 많다. \
+                                        하지만 무리한 체중 감량을 하면 복 또한 같이 빠져나가 인기가 하락하고 재물이 힘들어지는 경우가 많은 유형이다."
+                        resultCeleb = "강호동 김준현 정형돈"
+                        break;  
+                    case "고양이상":
+                        degreeNum = "five";
+                        resultTitle = "연애하고 싶은 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "고양이상은 얼굴형이 입체적이고 이목구비가 화려하며 눈앞머리에서 눈꼬리로 갈수록 경사가 올라간다. 또한 날카롭고 오똑한 콧날 세련되고 도도한 차도남이면서 섹시하고 연애하고 싶은 남자이다."
+                        resultCeleb = "김수현 시우민 민현"
+                        break;  
+                    case "여우상":
+                        degreeNum = "six";
+                        resultTitle = "홀리는 재주가 있는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "여우상은 고양이상과 강아지상이 적절히 융합되어 있는 듯함이 특징이며, 눈빛이 능글맞고 사소한 행동으로도 사람을 홀리는 재주가 있어 도화살이 끼는 경우가 많은 유형이다."
+                        resultCeleb = "서인국 신혜성 육성재 이준 이준기 키"
+                        break;  
+                    case "너구리상":
+                        degreeNum = "seven";
+                        resultTitle = "능청스러운 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "초롱초롱한 눈망울과 뚜혓한 이목구비를 가졌다. 광대가 발달하고 상대적으로 턱이 짧은 것이 특징. 능청스럽고 속이 편한 듯 보이지만 실제로는 무척 많은 노력을 기울인다. 행실이 바르고 정확한 사람이다."
+                        resultCeleb = "이낙연 조정석"
+                        break;  
+                    case "사슴상":
+                        degreeNum = "one";
+                        resultTitle = "시샘이 있는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "사슴의 얼굴처럼 이마가 발달되어 있는 반면 , 아래턱의 끝이 뽀족한 형태를 하고 있으며, 눈은 약각 횡으로 길다. 성격은 의심을 하거나 다른 사람을 시샘하는 경향이 강하다. 또한 장시간 같은 자세로 있지를 못하고 집중력과 침착함이 부족한다."
+                        resultCeleb = "차은우 최강창민"
+                        break; 
+                    case "곰상":
+                        degreeNum = "two";
+                        resultTitle = "골격이 좋은 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "눈이 둥근 편이고 길이가 짧아 눈이 작아보인다. 콧구멍이 크고 들려있어 '재물이 새어나갈 위험이 크지만 부자가 될 관상이다. 입은 그렇게 크지 않다. 만약 키가 크지 않더라도 골격 자체가 좋은 편이다."
+                        resultCeleb = "김태우 임현식 정준하 카이"
+                        break;     
+                    case "늑대상":
+                        degreeNum = "three";
+                        resultTitle = "남성미가 넘치는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "전반적으로 얼굴이 각이 진 느낌이다. 남성미가 풍기며 투박한 느낌을 준다. 하관이 길고 턱이 발달되어 있으며 인중이 짧은 것이 특징이다. 사회적으로 큰 성취를 이룰 수 있는 군에 속한다."
+                        resultCeleb = "뷔"
+                        break; 
+                    case "거북이상":
+                        degreeNum = "four";
+                        resultTitle = "매사 신중한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "이마가 평평한 듯 하며 눈이 큰 것이 특징이다. 행동이 굼뜨며, 말도 무척 느리다. 운동하고는 거리가 먼 사람이다. 매사에 신중하여 실수 하는 일이 적은 편이나 너무 신중한 나머지 오히려 때를 놓치는 경우도 있다."
+                        resultCeleb = "이건희"
+                        break;  
+                    case "개구리상":
+                        degreeNum = "five";
+                        resultTitle = "최선을 다하는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "다소 크고 약간은 돌출되어 보이기는 하는 눈과 살이 없고 매끈하면서 작은 코 형태를 갖고 있다. 특성으로는 안정적이고 어떤 기준과 조건 하에 최선을 다하는 면에서 매우 바람직하고 이상적인 배우자상이다."
+                        resultCeleb = "노무현 하현우"
+                        break;  
+                    case "공룡상":
+                        degreeNum = "six";
+                        resultTitle = "매력이 넘치는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "눈이 크고 미간이 넓다. 입이 크고 광대가 발달하였으며 입꼬리가 올라가 있어 매력적이다. "
+                        resultCeleb = "공유 김우빈 종현 첸"
+                        break; 
+                    case "메기상":
+                        degreeNum = "seven";
+                        resultTitle = "성격이 활발한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "눈은 크리가 작고 두 눈 사이가 매우 넓다. 입은 크고 아래턱이 위턱보다 길다. 성격이 활발하고 재미있느 사람이다."
+                        resultCeleb = "이상운 이상준"
+                        break;   
                 }
             } else {
                 gtag('event', '여자 실행', {
@@ -404,143 +429,107 @@
                     'event_label': '여자'
                 });
                 switch (prediction[0].className) {
-                    case "한혜진":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 적당하고 눈썹은 재복이 많은 눈썹이고 눈은 남자를 쥐락펴락하는 눈이고 한 성깔하는 눈이고 코는 재복이 좋은 코지만 자존심이 하늘을 찌르는 코이고 인중이 길고 또렷하여 예능계통으로 소질이 있고 입은 적당하고 웃을때 잇몸이 안보이므로 바람끼는 없고 \
-                                        턱은 강인하여 말년운이 좋고 성실한 턱이고 책임감이 강한턱이고 전체적으로 얼굴 윤곽이 너무나 뚜렷하여 배우나 모델로는 좋을지 모르지만 여자동물상으로는 기가쎄고 대가 쎈 여자에 속합니다. "
-                        resultCeleb = ""
-                        break;
-                    case "진지현":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "눈썹도 길어서 재복을 상징하고요. 이마는 갈매기상이라서 지혜를 겸비하고 현모양처가 될 수 있습니다. 입술이 도톰하여 애교가 많고 키가커서 성격이 시원시원한 동물상입니다. "
-                        resultCeleb = ""
-                        break;
-                    case "고소영":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "얼굴 전체적으로 이목구비가 뚜렷하고 볼륨감이 있는 얼굴로써 입술은 남자에게 내조를 잘하는 입술이면서 사랑을 받는 입술이고 콧등위에 복점은 부자가 되는 점입니다. 눈이 시원시원하여 마음씨도 시원시원하고 이마도 깨끗하고 좋습니다 "
-                        resultCeleb = ""
-                        break;
-                    case "강민경":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 둥근형이라 집안일보다 바깥일을 좋아하고 대인관계가 좋고 사업성이 좋은 이마입니다.미간이 넓어서 성적으로 개방적인 성격이고 결혼을 일찍하면 이혼수가 아주 강하여 결혼을 최대한 늦게 하는게 좋습니다.\
-                                        전체적으로 남자를 조심하고 결혼만 늦게하면 아주 좋은 동물상에 해당합니다."
-                        resultCeleb = ""
-                        break;
-                    case "강소라":
-                        degreeNum = "two"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "코는 재복이 좋은 코이고 인중은 평범한 편에 속하고 입술은 아래 위로 도톰하여 남편복이 좋고 연애운이 좋고 살림 잘하는 입술이고 턱은 강인하고 적당하여 재복이 좋고 말년운이 좋고 여성스럽고 서글서글한 성격입니다.\
-                                        직업운이 좋고 대인관계가 좋고 귓볼이 칼귀라서 씀씀이가 큰편입니다. 전체적으로 야무지고 당차고 여성스럽고 자상하여 좋은 동물상입니다."
-                        resultCeleb = ""
-                        break;
-                    case "김옥빈":
-                        degreeNum = "two"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "미간은 적당하고 눈은 남자에게 인기가 많고 남자 꼬시는 재주가 좋고 하지만 기가 너무 강한 눈이라 남자 기를 죽일 수 있고 코는 재복이 좋고 남편복이 좋은 코이고 인중은 적당하고 입은 자존심이 강한 입이고 턱은 재복이 좋고 말년운이 좋습니다.\
-                                        전체적으로 흠잡을때 없는 완벽한 동물상인데 단점은 얼굴에서 나오는 기가 너무 강합니다. 너무 강하면 남편 하는일이 잘 안될수 있습니다. 그로 인해 부부마찰이 생길 수 있습니다. "
-                        resultCeleb = ""
-                        break;
-                    case "김태희":
-                        degreeNum = "two"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "귀가 당나귀 귀라서 재복이 좋고 인복이 좋은 상이고 두상이 작아서 판단력과 머리 회전이 아주 빠른 동물상이고 눈썹이 눈꼬리보다 길어서 재복이 아주 좋습니다. 이마가 둥근형이라 결혼생활은 의문입니다. 처음에는 좋다가 나중에는 안좋을수도 있습니다.\
-                                        액땜하는 방법은 결혼을 최대한 늦게 결혼하면 좋습니다."
-                        resultCeleb = ""
-                        break;
-                    case "재경":
-                        degreeNum = "two"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 둥근 계단형이라서 결혼운이 좋다고 할 수 없습니다. 최대한 결혼을 늦게 하여야 좋습니다. 이런 이마는 늦게 이혼하는 경우가 많습니다. 남편과 다툼이 많을 수 있습니다.귀는 아주 큰 부처귀인데 인복이 좋고 정이 많고 재복이 좋고 출세와 성공 가능한 귀입니다.\
-                                        계산이 빠르고 정보력이 좋다고 보시면 됩니다. 남자 보는 눈도 높은편입니다. "
-                        resultCeleb = ""
-                        break;
-                    case "문채원":
-                        degreeNum = "two"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "눈썹이 재복이 좋은 눈썹이고 눈이 내조를 잘하는 눈이지만 성욕을 좀 밝히는 눈입니다. 코는 재복이 좋은 코이며 이마가 내조를 잘 하는 이마이고 자식을 잘 키우는 이마이고 슬기롭고 지혜로운 이마인데 문제는 계단형 이마라서 남편이 사고치는 이마입니다.\
-                                        남편운 빼고는 아주 좋은 동물상입니다. 귀가 낭비벽이 좀 심한 귀이군요 절제를 좀 해야겠습니다."
-                        resultCeleb = ""
-                        break;
-                    case "박보영":
-                        degreeNum = "two"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "얼굴에 비해서 입이 약간 작은편이군요. 이것은 자기 속마음을 남에게 잘 말하지 않는 성격입니다. 남자가 입이 작으면 안좋지만 여자가 입이 작으면 별탈없습니다.그리고 눈이 약간 부리부리한 눈이군요. 이런눈을 가진 여자들은 남편 말을 잘 안듣고 자기 고집대로 가정을 꾸려나갑니다.\
-                                        그래서 남편과의 사이가 안좋을수가 있습니다. 남편과의 트러블이 안좋은것 빼고는 아주 좋은 동물상에 속합니다."
-                        resultCeleb = ""
-                        break;
-                    case "박신혜":
-                        degreeNum = "two"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 결혼하고나서 잔걱정이 많은 이마입니다. 하지만 남편과 자식에게는 현모양처에 가까운 이마이지만 하지만 남편이 속을 썩힐수가 있는 이마입니다. 인중은 또렷하여 예능기질이 좋고 입은 아랫입술이 도톰하여 남자복이 좋아서 남자가 많이 따르는 입입니다. \
-                                        턱은 말년운이 좋고 재복이 좋은 턱이고 볼과 광대는 적당하고 복스러운상이지만 자존심이 아주 강한 광대입니다. 전체적으로 재복이 좋고 복스러운 상이나 이마에 솜털이 많고 계단형 이마에 속하여 남편과 다툼이 많을수 있는 동물상에 해당합니다."
-                        resultCeleb = ""
-                        break;
-                    case "설리":
-                        degreeNum = "two"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "눈썹이 팔자 눈썹이면서 재벌가의 눈썹이라 부모복이 좋고 남편복이 좋고 평생 돈걱정없이 태평스럽게 살아가는 눈썹이고 미간이 넓은 편에 속하는군요. 이혼수가 강한 미간입니다. 최대한 결혼을 늦게하면 이혼수를 액땜할수 있습니다. \
-                                        눈이 필요없는 남자들이 엄청 많이 붙는 눈이라 남자들 때문에 마음고생 하거나 이성이 많이 꼬이는 눈입니다. 전체적으로 미인이고 결혼만 늦게하면 남편복도 좋고 자식복도 좋습니다. 성격도 착하고 차분하면서 현실주의자입니다."
-                        resultCeleb = ""
-                        break;
-                    case "손예진":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마가 갈매기상이라서 현모양처상이고 지혜로운 동물상입니다. 얼굴에 비해 코가 크고 콧구멍이 안보여서 재물이 들어오는 상입니다. 턱도 갸름하여 성격도 좋고 이목구비에 비해 머리가 큰 편이라서 머리도 좋은편 입니다. \
-                                    이마가 훤칠하면 좋은데 여자가 이마가 너무 훤칠해도 남편과 트러블이 생길수 있습니다. 하지만 지혜로운 동물상이라서 지혜롭게 대처해 나가겠지요. 현모양처상이라서 남편복도 좋습니다."
-                        resultCeleb = ""
-                        break;
-                    case "송혜교":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "얼굴이 전체적으로 귀여운상이고 얼굴이 도톰하여 복이 많고 남편복도 좋고 자식복도 좋습니다.이마가 깨끗하고 반 갈매기상이라 지혜롭습니다. 코가 인상적인 코라서 보는 사람들의 뇌리에 박히는 상이라 연예활동 및 광고 모델로서는 너무나 완벽한 얼굴을 소유하였습니다."
-                        resultCeleb = ""
-                        break;
-                    case "수지":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마가 이혼수가 강하고 잔걱정이 많은 이마입니다. 남자가 꼬이고 남편때문에 마음고생하는 이마입니다. 미간도 넓어서 이혼수가 강하네요.성격이 남자다운면도 있고 서글서글하고 붙임성이 좋고 사회성이 좋습니다. 결혼운은 이혼수가 있기 때문에 결혼을 늦게 해야 합니다.\
-                                        얼굴이 개성이 강한 얼굴이라 사람 마음을 끌어당기는 면이 강합니다. 사람을 끌어당기고 포용력이 좋아 사회생활에 너무 좋은 동물상에 속합니다. 다만 남자와 남편을 약간 무시하는 듯한 면도 있습니다.  "
-                        resultCeleb = ""
-                        break;
-                    case "신세경":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "코가 강직하고 큰편이라 재복이 좋고 정력이 좋습니다.머리도 이목구비에 비해 큰편이라 머리도 좋습니다. 이마가 유명 여자 연예예인들은 크고 훤칠한데 신세경씨는 아주 적당합니다. 여자 이마는 너무 크면 사회성은 좋지만 팔자가 쎕니다. 그래서 적당한게 제일 좋습니다.\
-                                        전체적으로 여성적이고 남편복좋고 약간 내숭이 있고 차분하고 온화하고 좋은 동물상입니다."
-                        resultCeleb = ""
-                        break;
-                    case "아이유":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마가 아주 적당한 이마입니다 여자 이마가 너무 훤칠하면 이혼할 가능성이 아주 많은데 이마가 아주 적당합니다 남편 기도 살리는 여자이고 남자에게 잘하는 동물상입니다. 하지만 남편이 문제입니다 항상 사고 치는 남편을 만나는 동물상입니다 여자코가 납짝코이면 남편이 사업이 잘 안되든지 아니면 사회에서 항상 사고칠 가능성이 많습니다. \
-                        액땜하는 방법은 온순하고 공무원이나 월급쟁이 남편을 만나야 합니다. 그렇지 않으면 남편때문에 잔걱정이 많이 생기는 동물상입니다 사업하는 남편을 만나면 안됩니다. 이마가 아주 적당한 이마라서 자식도 잘 키울것 같습니다. 하지만 아이유씨는 코가 문제이군요 코가 남편복이 없던지 남편이 사고를 칠수 있고 낭비벽이 심한 코입니다."
-                        resultCeleb = ""
-                        break;
-                    case "손나은":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마는 적당한 크기면서 잔머리가 잘 돌아가고 눈치가 빠른 이마입니다. 눈썹은 길고 가지런하여 여성스러운 눈썹이고 재복이 좋습니다. 입술은 작고 얇은편이라 속이 좁을수가 있고 바람끼가 약간 있는편이고 남편복이 좋다고 할수 없습니다. 턱은 강한편이라 직업운이 강하고 말년운이 무난합니다.\
-                        코가 짧아서 애교는 많은편이지만 정면에서 콧구멍이 잘보여서 씀씀이가 강하고 돈이 잘나가는 코에 속합니다. 그리고 남편복이 약한 코입니다. 전체적으로 이성운이 강한 동물상이지만 쓸데없는 남자들이 붙는 경향이 강합니다."
-                        resultCeleb = ""
-                        break;
-                    case "정수정":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "(크리스탈)님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "이마가 넓고 둥근형이라 이혼수가 있는 이마이고 남편을 쥐락펴락하는 이마이고 눈썹은 자상하고 재복이 좋은 눈썹입니다. 눈은 성격이 강직하고 자존심이 강하고 뚝심있는 눈이고 코는 재복이 좋은 코입니다. 입은 가늘고 적당하여 좋은 입이고 속마음을 잘 말하지 않는 입이고 턱은 말년운이 좋고 재복이 좋은 턱입니다.\
-                        전체적으로 좋은 동물상이고 사회성도 좋고 붙임성도 좋고 대인관계도 좋은 성격입니다. "
-                        resultCeleb = ""
-                        break;
-                    case "오연서":
-                        degreeNum = "one"
-                        resultTitle = prediction[0].className + "님과 비슷한 동물상을 가지셨군요."
-                        resultExplain = "볼과 광대뼈가 재복이 아주 좋은 동물상입니다. 눈도 크고 입도 커서 대인관계도 좋고 인복도 좋습니다. 이마도 약간 넓긴 넓지만 적당하다고 보시면 됩니다. 문제는 눈에 기가 너무 강합니다. 눈이 너무 부리부리하고 코가 얼굴에 비해 큰편입니다. 이런상은 결혼운이 순탄하지가 못하고 이혼수가 강합니다.\
-                                        서른 넘겨서 엄청 늦게 결혼해야합니다. 얼굴 전체적으로 화개살이 강하여 남자가 엄청 많이 붙는 상이라 남자를 조심해야합니다. 전체적으로 직업운이 좋고 말년운도 좋지만 결혼운만 조심하시면 아주 훌륭한 동물상에 속합니다."
-                        resultCeleb = ""
-                        break;
+                    case "쥐상":
+                        degreeNum = "one";
+                        resultTitle = "꾀가 많은 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "쥐상은 하관이 짧고 체구가 작은 것이 특징이며, 부지런하고 꾀가 많으며 기회 포착을 잘한다. 그리고 식복이 있어 아무리 못살아도 밥은 먹고 살아가며, \
+                                        위험을 미리 감지하는 본능이 왔다갔다하며 재빨리 움직이는 눈에 있다. 또한 스스로 체구가 작아 미약하며 위엄 없어 보인다는 것을 일찌감치 파악해 어릴 때부터 주로 머리를 쓰며 동작 빠르게 살아가는 유형이다."
+                        resultCeleb = "최유진"
+                        break;  
+                    case "다람쥐상":
+                        degreeNum = "two";
+                        resultTitle = "부지런한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "다람쥐상은 하관이 짧고 체구가 작은 것이 특징이며, 부지런하고 꾀가 많으며 기회 포착을 잘한다. 그리고 식복이 있어 아무리 못살아도 밥은 먹고 살아가며, \
+                                        위험을 미리 감지하는 본능이 왔다갔다하며 재빨리 움직이는 눈에 있다. 또한 스스로 체구가 작아 미약하며 위엄 없어 보인다는 것을 일찌감치 파악해 어릴 때부터 주로 머리를 쓰며 동작 빠르게 살아가는 유형이다."
+                        resultCeleb = "사나 웬디 한승연"
+                        break;    
+                    case "토끼상":
+                        degreeNum = "three";
+                        resultTitle = "사랑스러운 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "토끼상은 대체로 인중이 뚜렷하고 커다란 눈망울과 귀엽고 사랑스러운 분위기가 풍겨 모성애를 자극하는 얼굴상이다. 첫인상이 귀여워 이성의 유혹을 많이 받을 수 있으니 조심해야 한다."
+                        resultCeleb = "아이유 김슬기 나연 수지 수빈 아이린 이나은 장원영"
+                        break;    
+                    case "용상":
+                        degreeNum = "four";
+                        resultTitle = "위엄있는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "용상은 코가 높이 솟아 있고 귀는 눈썹보다 위에 위치하고 있으며 눈은 둥글면서 눈동자는 크고 눈썹은 굵고 짙은 것이 특징이다. 또한 이마·코·눈썹·광대뼈와 턱 부분이 발달되어 있다. \
+                                    전신에서 사람들을 압도하는 에너지가 뿜어져 나오고, 골격은 바위처럼 장대하면서 단정하다. 수염이 길고 아름다우며 두골의 좌우 상부가 튀어나와 있다. 인상의 전체적인 분위기는 위엄이 있으며, \
+                                    성격은 상황에 따라 태도가 자주 변하기 때문에 그 행동을 예측하기가 매우 어려운 사람이 많은 유형이다."
+                        resultCeleb = "김연아"
+                        break;    
+                    case "뱀상":
+                        degreeNum = "five";
+                        resultTitle = "간교한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "뱀상은 얼굴이 둥글며 목과 혀가 유난히 길고 입술이 얇은 것이 특징이며, 혀를 자주 움직이는 버릇이 있어 마치 뱀을 방불케 하며 눈에서는 살기를 느낄 수 있으며 간교한 느낌을 주는 유형이다."
+                        resultCeleb = "김옥빈 청하 헤이즈"
+                        break;     
+                    case "말상":
+                        degreeNum = "six";
+                        resultTitle = "건강한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "말상은 대체적으로 얼굴이 길고 크며 이목구비도 큼직하다. 건강하고 강인한 육체도 가지고 있다."
+                        resultCeleb = "가희"
+                        break;  
+                    case "원숭이상":
+                        degreeNum = "seven";
+                        resultTitle = "머리가 명석한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "원숭이상은 입이 크고 귀가 양 옆으로 펼쳐져 있는게 특징이며, 머리가 명석하고 운동신경과 재주가 뛰어나지만 성품이 가볍고 경박하기도 하여 자기 꾀만 믿고 덤비다 크게 낭패하는 경우가 많다. 또한 성질이 급하고 호색한인 경우가 많은 유형이다."
+                        resultCeleb = "최진실"
+                        break;    
+                    case "강아지상":
+                        degreeNum = "one";
+                        resultTitle = "결혼하고 싶은 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "강아지상은 얼굴형과 이목구비가 동글동글하며 눈꼬리가 처져서 선해 보인다. 또한 통통한 볼살, 훈훈한 동안상, 깨끗하고 하얀 피부에 동그랗고 큰 눈, 수평형으로 자연스럽고 두께가 있는 눈썹, 살짝 쳐진 눈꼬리, 동그란 얼굴형의 얼굴로 결혼하고 싶은 훈녀상이다."
+                        resultCeleb = "박보영 수지 구혜선 문근영 임수정 한가인 한효주"
+                        break;  
+                    case "돼지상":
+                        degreeNum = "two";
+                        resultTitle = "식욕이 왕성한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "돼지상은 보통 볼살이 많고 목이 짧고 굵으며 입술은 두툼한 것이 특징이며, 재물운이 좋고 식욕이 왕성하여 쉽게 비만해지는 경향이 있으며, 웃음소리가 호탕하고 통이 커서 인복이 많다. \
+                                        하지만 무리한 체중 감량을 하면 복 또한 같이 빠져나가 인기가 하락하고 재물이 힘들어지는 경우가 많은 유형이다."
+                        resultCeleb = "강소라 고현정 서현 소유 손나은 솔비 송가인 옥주현 이하늬"
+                        break;  
+                    case "고양이상":
+                        degreeNum = "five";
+                        resultTitle = "연애하고 싶은 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "고양이상은 얼굴형이 입체적이고 이목구비가 화려하며 눈앞머리에서 눈꼬리로 갈수록 경사가 올라간다. 또한 날카롭고 오똑한 콧날 세련되고 도도한 차도남이면서 섹시하고 연애하고 싶은 여자이다."
+                        resultCeleb = "이효리 한예슬 김민희 김희선 한채영 박지윤 고소영 제시카 제니"
+                        break;  
+                    case "여우상":
+                        degreeNum = "six";
+                        resultTitle = "홀리는 재주가 있는 " + pprediction[0].className + reaulTitleSuffix;
+                        resultExplain = "여우상은 고양이상과 강아지상이 적절히 융합되어 있는 듯함이 특징이며, 눈빛이 능글맞고 사소한 행동으로도 사람을 홀리는 재주가 있어 도화살이 끼는 경우가 많은 유형이다."
+                        resultCeleb = "가인 박경리 유인나 제시카 지연 한혜진"
+                        break;  
+                    case "너구리상":
+                        degreeNum = "seven";
+                        resultTitle = "능청스러운 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "초롱초롱한 눈망울과 뚜혓한 이목구비를 가졌다. 광대가 발달하고 상대적으로 턱이 짧은 것이 특징. 능청스럽고 속이 편한 듯 보이지만 실제로는 무척 많은 노력을 기울인다. 행실이 바르고 정확한 사람이다."
+                        resultCeleb = "모모"
+                        break;  
+                    case "사슴상":
+                        degreeNum = "one";
+                        resultTitle =  "시샘이 있는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "사슴의 얼굴처럼 이마가 발달되어 있는 반면 , 아래턱의 끝이 뽀족한 형태를 하고 있으며, 눈은 약각 횡으로 길다. 성격은 의심을 하거나 다른 사람을 시샘하는 경향이 강하다. 또한 장시간 같은 자세로 있지를 못하고 집중력과 침착함이 부족한다."
+                        resultCeleb = "윤아 전지현 신예은"
+                        break; 
+                    case "거북이상":
+                        degreeNum = "two";
+                        resultTitle = "매사 신중한 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "이마가 평평한 듯 하며 눈이 큰 것이 특징이다. 행동이 굼뜨며, 말도 무척 느리다. 운동하고는 거리가 먼 사람이다. 매사에 신중하여 실수 하는 일이 적은 편이나 너무 신중한 나머지 오히려 때를 놓치는 경우도 있다."
+                        resultCeleb = "솔라 하연수"
+                        break;  
+                    case "개구리상":
+                        degreeNum = "three";
+                        resultTitle = "최선을 다하는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "다소 크고 약간은 돌출되어 보이기는 하는 눈과 살이 없고 매끈하면서 작은 코 형태를 갖고 있다. 특성으로는 안정적이고 어떤 기준과 조건 하에 최선을 다하는 면에서 매우 바람직하고 이상적인 배우자상이다."
+                        resultCeleb = "전소민 조보아 김소현"
+                        break;  
+                    case "공룡상":
+                        degreeNum = "four";
+                        resultTitle =  "매력이 넘치는 " + prediction[0].className + reaulTitleSuffix;
+                        resultExplain = "눈이 크고 미간이 넓다. 입이 크고 광대가 발달하였으며 입꼬리가 올라가 있어 매력적이다. "
+                        resultCeleb = "송지효 김아중 한지민 천우희 신미아"
+                        break; 
                     default:
                         resultTitle = "알수없음"
                         resultExplain = ""
