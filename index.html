@@ -228,18 +228,43 @@
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('.image-upload-wrap').hide();
-                    $('#loading').show();
-                    $('.file-upload-image').attr('src', e.target.result);
-                    $('.file-upload-content').show();
-                    $('.image-title').html(input.files[0].name);
-                };
                 reader.readAsDataURL(input.files[0]);
-                init().then(function () {
-                    predict();
-                    $('#loading').hide();
-                });
+                reader.onload = function (e) {
+                    var tempImage = new Image();
+                    tempImage.src = reader.result;
+                    tempImage.onload = function () {
+                        var canvas = document.createElement('canvas');
+                        var canvasContext = canvas.getContext("2d");
+                        var MAX_WIDTH = 400;
+                        var MAX_HEIGHT = 400;
+                        var width = tempImage.width;
+                        var height = tempImage.height;
+                        if (width > height) {
+                            if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                            }
+                        } else {
+                            if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                            }
+                        }
+                        canvas.width = width;
+                        canvas.height = height;
+                        canvasContext.drawImage(this, 0, 0, width, height);
+                        var dataURI = canvas.toDataURL("image/jpeg");
+                        $('.image-upload-wrap').hide();
+                        $('#loading').show();
+                        $('.file-upload-image').attr('src', dataURI);
+                        $('.file-upload-content').show();
+                        $('.image-title').html(input.files[0].name);
+                        init().then(function () {
+                            predict();
+                            $('#loading').hide();
+                        });
+                    }
+                }
             } else {
                 removeUpload();
             }
